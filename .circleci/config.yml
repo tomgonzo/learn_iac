@@ -36,11 +36,6 @@ jobs:
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push $DOCKER_LOGIN/$IMAGE_NAME
-  snyk_scan_iac:
-    steps:
-      - checkout
-      - snyk/scan-iac:
-          path: part03/iac_gke_cluster/
   gke_create_cluster:
     docker:
       - image: ariv3ra/terraform-gcp:latest
