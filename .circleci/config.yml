@@ -126,7 +126,12 @@ workflows:
     jobs:
       - run_tests
       - build_docker_image
-      - gke_create_cluster
+      - snyk_scan_iac
+      - gke_create_cluster:
+          requires:
+            - run_tests
+            - build_docker_image
+            - snyk_scan_iac
       - gke_deploy_app:
           requires:
             - run_tests
