@@ -114,12 +114,13 @@ workflows:
     jobs:
       - run_tests
       - build_docker_image
-      - snyk_scan_iac
+      - snyk/scan-iac:
+          path: part03/iac_gke_cluster/
       - gke_create_cluster:
           requires:
             - run_tests
             - build_docker_image
-            - snyk_scan_iac
+            - snyk/scan-iac
       - gke_deploy_app:
           requires:
             - run_tests
