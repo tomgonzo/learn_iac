@@ -44,7 +44,7 @@ jobs:
     steps:
       - checkout
       - snyk/scan-iac
-          path: ./part03/iac_gke_cluster/
+          path: part03/iac_gke_cluster/
   gke_create_cluster:
     docker:
       - image: ariv3ra/terraform-gcp:latest
