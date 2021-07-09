@@ -43,7 +43,7 @@ jobs:
       CLOUDSDK_CORE_PROJECT: cicd-workshops
     steps:
       - checkout
-      - snyk/scan-iac
+      - snyk/scan-iac:
           path: part03/iac_gke_cluster/
   gke_create_cluster:
     docker:
