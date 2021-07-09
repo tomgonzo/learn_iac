@@ -43,15 +43,8 @@ jobs:
       CLOUDSDK_CORE_PROJECT: cicd-workshops
     steps:
       - checkout
-      - run:
-          name: Generate Terraform Plan JSON
-          command: |
-            cd part03/iac_gke_cluster/
-            terraform init
-            terraform plan -var credentials=$HOME/gcloud_keys -out=tfplan.binary
-            terraform show -json tfplan.binary > tf-plan.json
-      - snyk/scan-iac:
-          path: tf-plan.json
+      - snyk/scan-iac
+          path: part03/iac_gke_cluster/
   gke_create_cluster:
     docker:
       - image: ariv3ra/terraform-gcp:latest
