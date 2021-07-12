@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  snyk: snyk/snyk@dev:develop
+  snyk: snyk/snyk@dev:feat/expose-iac-params-to-job
   
 jobs:
   run_tests:
