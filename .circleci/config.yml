@@ -110,7 +110,7 @@ workflows:
       - run_tests
       - build_docker_image
       - snyk/scan-iac:
-          args: part03/iac_gke_cluster
+          args: part03/iac_gke_cluster --severity-threshold=high
       - gke_create_cluster:
           requires:
             - run_tests
