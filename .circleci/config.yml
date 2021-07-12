@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  snyk: snyk/snyk@dev:feat/support-iac
+  snyk: snyk/snyk@dev:develop
   
 jobs:
   run_tests:
