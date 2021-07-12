@@ -110,7 +110,7 @@ workflows:
       - run_tests
       - build_docker_image
       - snyk/scan-iac:
-          args: part03/iac_kubernetes_app
+          args: part03/iac_gke_cluster
       - gke_create_cluster:
           requires:
             - run_tests
