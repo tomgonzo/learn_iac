@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  snyk: snyk/snyk@dev:feat/expose-iac-params-to-job
+  snyk: snyk/snyk@1.0.0
   
 jobs:
   run_tests:
@@ -109,7 +109,8 @@ workflows:
     jobs:
       - run_tests
       - build_docker_image
-      - snyk/scan-iac
+      - snyk/scan-iac:
+          args: part03/iac_kubernetes_app
       - gke_create_cluster:
           requires:
             - run_tests
