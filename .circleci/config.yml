@@ -28,6 +28,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
+      - snyk/scan
       - run:
           name: Build Docker image
           command: |
@@ -110,7 +111,7 @@ workflows:
       - run_tests
       - build_docker_image
       - snyk/scan-iac:
-          args: part03/iac_gke_cluster --severity-threshold=high
+          args: part03/iac_gke_cluster
       - gke_create_cluster:
           requires:
             - run_tests
