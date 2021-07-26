@@ -13,9 +13,7 @@ jobs:
           name: Install npm dependencies
           command: |
             npm install --save
-      - snyk/scan:
-          severity-threshold: high
-          fail-on-issues: false
+      - snyk/scan
       - run:
           name: Run Unit Tests
           command: |
