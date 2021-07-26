@@ -28,7 +28,9 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: false
-      - snyk/scan
+      - snyk/scan:
+          severity-threshold: high
+          fail-on-issues: false
       - run:
           name: Build Docker image
           command: |
