@@ -39,7 +39,7 @@ jobs:
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
       - snyk/scan:
           severity-threshold: high
-          docker-image-name: $DOCKER_LOGIN/$IMAGE_NAME:$TAG
+          docker-image-name: $DOCKER_LOGIN/$CIRCLE_PROJECT_REPONAME
           target-file: "Dockerfile"
           fail-on-issues: true
       - run:
