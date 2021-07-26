@@ -39,6 +39,19 @@ jobs:
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push $DOCKER_LOGIN/$IMAGE_NAME
+      - snyk/scan:
+          severith-threshold: high
+          docker-image-name: $DOCKER_LOGIN/$IMAGE_NAME:$TAG
+          target-file: "Dockerfile"
+          fail-on-issues: true
+      - run:
+          name: Push Docker image
+          command: |
+            export TAG=0.2.<< pipeline.number >>
+            export IMAGE_NAME=$CIRCLE_PROJECT_REPONAME
+            docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push $DOCKER_LOGIN/$IMAGE_NAME
   gke_create_cluster:
     docker:
       - image: ariv3ra/terraform-gcp:latest
