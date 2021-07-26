@@ -40,7 +40,7 @@ jobs:
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push $DOCKER_LOGIN/$IMAGE_NAME
       - snyk/scan:
-          severith-threshold: high
+          severity-threshold: high
           docker-image-name: $DOCKER_LOGIN/$IMAGE_NAME:$TAG
           target-file: "Dockerfile"
           fail-on-issues: true
